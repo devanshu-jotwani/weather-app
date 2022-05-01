@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+ 		<title>Weather App</title>
+    <style type="text/css">
+    * {
+       font-size: 20px;
+       font-family: verdana;
+       padding: 0;
+       margin: 0;
+    }
+
+    h1 {
+       font-size: 36px;
+    }
+
+    .header {
+        color: white;
+        background-color: lightblue;
+        text-align: center;
+        width: 100%;
+        height: 100px;
+    }
+
+    .city {
+      margin-left: 20%;
+    }
+
+    .weather {
+      margin-left: 38.6%;
+      width: 20%;
+      background-color: #eee;
+      color: #aaa;
+      padding: 10px;
+    }
+
+    .submit_button {
+        color: white;
+        background-color: lightblue;
+        padding: 5px;
+        margin-left: 10px;
+    }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="header">
+      <br>
+      <h1>Weather App</h1>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="city">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <label>Whats the weather like ??</label>
+            <input type="text" name="c1" size="30" placeholder="Enter City"/>
+            <input type="submit" value="Find Weather" class="submit_button" />
+            <br>
+    	</form>
+    </div>
+
+    <br>
+    <br>
+
+    {% if city_weather.flag %}
+    <div class="weather">
+        <p>How {{city_weather.city}} looks today ?</p>
+        <hr>
+        <br>
+        <p>Temperature: {{city_weather.temperature}} ℃</p>
+        <br>
+        <p>Humidity: {{city_weather.humidity}} %</p>
+        <br>
+        <p>Description: {{city_weather.description}}</p>
+    </div>
+    {% endif %}
+
+  </body>
+</html>
